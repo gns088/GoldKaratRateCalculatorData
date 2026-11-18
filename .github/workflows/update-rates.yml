@@ -1,0 +1,38 @@
+name: Update IBJA rates
+
+on:
+  schedule:
+    # 12:45 and 18:45 IST (UTC+5:30). GitHub runs this in UTC and may start a few minutes late.
+    - cron: '15 7 * * *'
+    - cron: '15 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-ibja-rates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch the latest IBJA session
+        run: node scripts/update-rates.js
+
+      - name: Commit rates.json when the session changed
+        run: |
+          git add rates.json
+          if git diff --cached --quiet; then
+            echo "IBJA session unchanged."
+            exit 0
+          fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Update IBJA gold and silver rates"
+          git push

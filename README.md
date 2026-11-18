@@ -1,6 +1,16 @@
-# Gold Karat Rate Calculator – Blog assets (images)
+# Gold Karat Rate Calculator – Blog assets and IBJA rates
 
-This repo holds blog images used by the main app. The main app loads them via **GitHub raw URLs**—no copy step, no files in the main project.
+This repo holds blog images and the India bullion rate file used by the main app. The main app loads them via **GitHub raw URLs**—no copy step, no files in the main project.
+
+## IBJA rates
+
+`rates.json` is the India Bullion and Jewellers Association session (24K, 22K, 18K, 14K, and silver). The calculator reads:
+
+```
+https://raw.githubusercontent.com/gns088/GoldKaratRateCalculatorData/main/rates.json
+```
+
+A GitHub Action (`.github/workflows/update-rates.yml`) runs at about 12:45 and 18:45 IST. It calls the free IBJA relay once and commits `rates.json` only when the session or a price changed. A failed call leaves the previous file in place. Visitors never call that relay; they read this file.
 
 ## URLs used by the blog
 

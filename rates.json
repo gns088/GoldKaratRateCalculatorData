@@ -1,0 +1,16 @@
+{
+  "source": "IBJA",
+  "sourceUrl": "https://ibjarates.com/",
+  "date": "2026-11-18",
+  "session": "AM",
+  "fetchedAt": "2026-11-18T07:46:09.825Z",
+  "gold24kPer10g": 131505,
+  "gold22kPer10g": 120459,
+  "gold18kPer10g": 98629,
+  "gold14kPer10g": 76930,
+  "silverPerKg": 164506,
+  "change": -2696,
+  "previousDate": "2026-11-17",
+  "silverChange": -4665,
+  "note": "IBJA benchmark for India, before GST and making charges."
+}
